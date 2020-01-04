@@ -1,17 +1,15 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import Login from './components/Login';
 
-class App extends React.Component {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
-  render() {
-    return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
-        <p>Log in !</p>
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Route exact path="/" component={Login} />
       </div>
-    );
-  }
+    </Router>
+  );
 }
 
 export default App;
