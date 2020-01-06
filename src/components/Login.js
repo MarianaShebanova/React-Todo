@@ -7,8 +7,7 @@ class Login extends React.Component {
         credentials: {
             username: '',
             password: ''
-        },
-        isFetching: false
+        }
     };
 
     handleChange = e => {
@@ -22,14 +21,11 @@ class Login extends React.Component {
 
     login = e => {
         e.preventDefault();
-        this.setState({
-            isFetching: true
-        });
         axiosWithAuth()
             .post('/login', this.state.credentials)
             .then(res => {
                 localStorage.setItem('token', res.data.payload);
-                this.props.history.push('/colors');
+                this.props.history.push('/market-page');
             })
             .catch(err => console.log(err));
     };
@@ -51,11 +47,9 @@ class Login extends React.Component {
                         onChange={this.handleChange}
                     />
                     <button>Log in</button>
-                    {this.state.isFetching && 'logging in'}
                 </form>
             </div>
         );
     }
 }
-
 export default Login;
