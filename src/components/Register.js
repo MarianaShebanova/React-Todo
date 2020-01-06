@@ -64,7 +64,7 @@ const Register = (props) => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="primaryemail">Email:</label>
+                        <label htmlFor="primaryemail">Email:          </label>
                         <input className="titleStyles"
                             type="email"
                             name="primaryemail"

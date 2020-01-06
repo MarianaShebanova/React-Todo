@@ -25,11 +25,8 @@ function Header(props) {
 
     return (
         <div class="topnav">
-            <a class="active" href="https://nifty-edison-39c663.netlify.com/">ArtFolio</a>
-            <Link to="/">Gallery</Link>
-            <a href="https://nifty-edison-39c663.netlify.com/about.html">About Us</a>
-            <Link to="/character">Users</Link>
-            <Link to="profile-page">{isLoggedIn ? "Profile" : ""}</Link>
+            <Link to="/">Home</Link>
+            <Link to="/market-page">{isLoggedIn ? "Market" : ""}</Link>
             <a onClick={() => LogOut()} className="log-out">{isLoggedIn ? "Log Out" : ""}</a>
         </div>
     );
