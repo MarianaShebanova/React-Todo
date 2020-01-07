@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axios from 'axios';
 
 const Register = (props) => {
     const [credentials, setCredentials] = useState({
@@ -19,20 +20,19 @@ const Register = (props) => {
     const register = e => {
         e.preventDefault();
         console.log(credentials);
-        axiosWithAuth()
-            .post(`https://build-week-africanmarketplace.herokuapp.com/api/auth/register/`,
+        //axiosWithAuth()  
+        axios  
+            .post(`https://build-week-africanmarketplace.herokuapp.com/api/auth/register`,
                 credentials,
             )
             .then(res => {
                 localStorage.setItem('token', res.data.payload);
-                this.props.history.push('/market-price');
+                props.history.push('/market-price');
             })
             .catch(err => {
                 console.log("there was an error");
                 console.log(err);
             })
-        localStorage.setItem('token', "1");
-        props.history.push('/market-price');
     }
 
     return (
