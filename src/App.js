@@ -5,6 +5,12 @@ import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import Home from './components/Home';
 import Register from './components/Register';
+import MarketPrice from './components/MarketPrice';
+import SetPrice from './components/SetPrice';
+import ProductList from './components/ProductList';
+import AddItem from './components/AddItem';
+import Category from './components/Category';
+
 
 function App() {
   return (
@@ -14,9 +20,12 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <PrivateRoute path="/market-page">
-        </PrivateRoute>
-      </div>
+        <PrivateRoute exact path="/market-price" component={MarketPrice} />
+        <Route exact path="/market-price/:id" render={(props) => <Category {...props} />}/>
+        <PrivateRoute exact path="/set-price" component={SetPrice} />
+        <PrivateRoute exact path="/product-list" component={ProductList} />
+        <PrivateRoute exact path="/add-item" component={AddItem} />
+        </div>
     </Router>
   );
 }

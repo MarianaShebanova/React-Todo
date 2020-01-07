@@ -25,14 +25,14 @@ const Register = (props) => {
             )
             .then(res => {
                 localStorage.setItem('token', res.data.payload);
-                this.props.history.push('/market-page');
+                this.props.history.push('/market-price');
             })
             .catch(err => {
                 console.log("there was an error");
                 console.log(err);
             })
         localStorage.setItem('token', "1");
-        props.history.push('/market-page');
+        props.history.push('/market-price');
     }
 
     return (

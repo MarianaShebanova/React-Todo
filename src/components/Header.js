@@ -28,7 +28,10 @@ function Header(props) {
     return (
         <div class="topnav">
             <Link to="/">Home</Link>
-            <Link to="/market-page">{isLoggedIn ? "Market" : ""}</Link>
+            <Link to="/market-price">{isLoggedIn ? "Market Price" : ""}</Link>
+            <Link to="/set-price">{isLoggedIn ? "Set Price" : ""}</Link>
+            <Link to="/product-list">{isLoggedIn ? "Product List" : ""}</Link>
+            <Link to="/add-item">{isLoggedIn ? "Add Item" : ""}</Link>
             <a onClick={() => LogOut()} className="log-out">{isLoggedIn ? "Log Out" : ""}</a>
         </div>
     );

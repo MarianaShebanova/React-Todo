@@ -25,11 +25,11 @@ class Login extends React.Component {
             .post('https://build-week-africanmarketplace.herokuapp.com/api/auth/login', this.state.credentials)
             .then(res => {
                 localStorage.setItem('token', res.data.payload);
-                this.props.history.push('/market-page');
+                this.props.history.push('/market-price');
             })
             .catch(err => console.log(err));
         localStorage.setItem('token', "1");
-        this.props.history.push('/market-page');    
+        this.props.history.push('/market-price');    
     };
 
     render() {
