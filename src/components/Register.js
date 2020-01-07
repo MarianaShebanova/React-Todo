@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const Register = (props) => {
     const [credentials, setCredentials] = useState({
@@ -19,25 +19,20 @@ const Register = (props) => {
     const register = e => {
         e.preventDefault();
         console.log(credentials);
-        axios
-            .post(`https://als-artportfolio.herokuapp.com/createnewuser/`,
+        axiosWithAuth()
+            .post(`https://build-week-africanmarketplace.herokuapp.com/api/auth/register/`,
                 credentials,
             )
-            .then(response => {
-                console.log("response", response);
-                sessionStorage.setItem("token", response.data.access_token);
-                // once token is handeled, navigate to profile page
-                props.history.push("/profile-page");
+            .then(res => {
+                localStorage.setItem('token', res.data.payload);
+                this.props.history.push('/market-page');
             })
             .catch(err => {
                 console.log("there was an error");
                 console.log(err);
             })
-    }
-
-    const goToLogin = e => {
-        e.preventDefault();
-        props.history.push("/");
+        localStorage.setItem('token', "1");
+        props.history.push('/market-page');
     }
 
     return (
@@ -64,11 +59,11 @@ const Register = (props) => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="primaryemail">Email:          </label>
+                        <label htmlFor="email">Email:</label>
                         <input className="titleStyles"
                             type="email"
-                            name="primaryemail"
-                            value={credentials.primaryemail}
+                            name="email"
+                            value={credentials.email}
                             onChange={handleChange}
                         />
                     </div>                    

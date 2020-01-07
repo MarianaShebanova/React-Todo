@@ -9,7 +9,9 @@ function Header(props) {
     const [isLoggedIn, setLogged] = useState(false);
 
     const LogOut = () => {
+        console.log(localStorage);
         localStorage.removeItem("token");
+        console.log(localStorage);
         props.history.push("/");
     }
 
@@ -19,7 +21,7 @@ function Header(props) {
         } else {
             setLogged(false);
         }
-    }, [props.updates]);
+    });
 
 
 

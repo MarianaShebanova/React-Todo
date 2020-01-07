@@ -5,6 +5,16 @@ import { connect } from 'react-redux';
 
 const Home = (props) => {
 
+    const [isLoggedIn, setLogged] = useState(false);
+
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            setLogged(true);
+        } else {
+            setLogged(false);
+        }
+    });
+
     const goTologin = e => {
         e.preventDefault();
         props.history.push("/login");
@@ -14,13 +24,21 @@ const Home = (props) => {
         e.preventDefault();
         props.history.push("/register");
     }
+    let buttonLog;
+    let buttonRegister;
+    
+    if (!isLoggedIn) {
+        buttonLog = <button onClick={goTologin} className="postButton">Log in</button>
+        buttonRegister = <button onClick={goToSignUp} className="postButton">Register</button>
+    }
+ 
     return (
         <div className="home-page">
             <h1>Welcome to the Market</h1>
                 <div className="login-form">
-                    <form>
-                        <button onClick={goTologin} className="postButton">Log in</button>
-                        <button onClick={goToSignUp} className="postButton">Register</button>
+                    <form> 
+                    {buttonLog}
+                    {buttonRegister}
                     </form>
                 </div>
         </div>
