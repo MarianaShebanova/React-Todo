@@ -32,13 +32,18 @@ class Login extends React.Component {
                         var found = res.data.find(function (element) {
                             return element.username === name;
                         });
-                        this.props.dispatch({ type: 'USERNAME', username: found.id });
+                        console.log('BBB');
+                        console.log(found.id);
+                        this.props.dispatch({ type: 'USER', userId: found.id });
                     })
                     .catch(err => console.log(err)); 
                 localStorage.setItem('token', res.data.token);                
                 this.props.history.push('/market-price');
             })
-            .catch(err => console.log(err.response));   
+            .catch(err => {
+                console.log(err.response);
+                alert("Wrong user or password");
+            });  
     };
 
     render() {

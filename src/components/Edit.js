@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Edit = (props) => {
+    console.log('aste ' + props.userId);
     const [item, setItem] = useState([]);
-    
+    const userId = props.userId;
+
     useEffect(() => {
         const id = props.match.params.id;
         axiosWithAuth()
-            .get(`https://build-week-africanmarketplace.herokuapp.com/api/users/1/items/${id}`)
+            .get(`https://build-week-africanmarketplace.herokuapp.com/api/users/${userId}/items/${id}`)
             .then(res => {
                 console.log(res.data);
                 setItem(res.data);
@@ -28,7 +31,7 @@ const Edit = (props) => {
         const id = props.match.params.id;
         console.log(item);
         axiosWithAuth()
-            .put(`https://build-week-africanmarketplace.herokuapp.com/api/users/1/items/${id}`, item)
+            .put(`https://build-week-africanmarketplace.herokuapp.com/api/users/${userId}/items/${id}`, item)
             .then(res => {
                 console.log(res);
                 props.history.push('/set-price');
@@ -73,4 +76,12 @@ const Edit = (props) => {
 
 }
 
-export default Edit;
+const mapStateToProps = state => {
+    return {
+        userId: state.userId
+    }
+};
+
+export default connect(
+    mapStateToProps
+)(Edit);

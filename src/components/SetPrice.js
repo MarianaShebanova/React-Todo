@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { UserContext } from '../contexts/UserContext';
+import { connect } from 'react-redux';
 
 const initialCategories = [
     {
@@ -13,12 +14,13 @@ const initialCategories = [
     }
 ];
 
-const SetPrice = () => {
+const SetPrice = (props) => {
+    const id = props.userId;
     const [categories, setCategories] = useState(initialCategories);
     useEffect(() => {
         console.log()
         axiosWithAuth()
-            .get('https://build-week-africanmarketplace.herokuapp.com/api/users/1/items')
+            .get(`https://build-week-africanmarketplace.herokuapp.com/api/users/${id}/items`)
             .then(res => {
                 console.log(res);
                 setCategories(res.data);
@@ -43,4 +45,13 @@ const SetPrice = () => {
     );
 };
 
-export default SetPrice;
+const mapStateToProps = state => {
+    return {
+        userId: state.userId
+    }
+};
+
+export default connect(
+    mapStateToProps
+)(SetPrice);
+

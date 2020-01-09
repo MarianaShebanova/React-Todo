@@ -19,7 +19,7 @@ const Register = (props) => {
 
     const register = e => {
         e.preventDefault();
-        let name = this.state.credentials.username;
+        let name = credentials.username;
         axiosWithAuth()    
             .post(`https://build-week-africanmarketplace.herokuapp.com/api/auth/register`,
                 credentials,
@@ -38,7 +38,10 @@ const Register = (props) => {
                 localStorage.setItem('token', res.data.token);
                 props.history.push('/market-price');
             })
-            .catch(err => console.log(err.response));
+            .catch(err => {
+                console.log(err.response);
+                alert("Wrong user or password");
+            });
     }
 
     return (

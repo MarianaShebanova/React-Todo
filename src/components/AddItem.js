@@ -4,6 +4,8 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+let userId;
+
 class AddItem extends React.Component {
     state = {
         credentials: {
@@ -13,7 +15,7 @@ class AddItem extends React.Component {
             l_id: 1,
             c_id: 1
         },
-        username: ''
+        userId: '',
     };
 
     handleChange = e => {
@@ -25,11 +27,11 @@ class AddItem extends React.Component {
         });
     };
 
-    add = e => {        
+    add = e => {      
         e.preventDefault();
-        console.log(this.state.credentials);
+        const id = this.props.userId;
         axiosWithAuth()
-            .post('https://build-week-africanmarketplace.herokuapp.com/api/users/1/items', this.state.credentials)
+            .post(`https://build-week-africanmarketplace.herokuapp.com/api/users/${id}/items`, this.state.credentials)
             .then(res => {
                 this.props.history.push('/set-price');
             })
@@ -37,7 +39,6 @@ class AddItem extends React.Component {
     };
 
     render() {
-        console.log(this.state.username);
         return (
             <div className="home-page">
                 <h1>Add Item</h1>
@@ -79,8 +80,9 @@ class AddItem extends React.Component {
 }
 
 const mapStateToProps = state => {
+    console.log('SSS ' + state.userId);
     return {
-        username: state.username
+        userId: state.userId
     }
 };
 
