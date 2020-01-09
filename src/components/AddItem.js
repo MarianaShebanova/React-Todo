@@ -1,15 +1,19 @@
 import React from 'react';
 
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
-class Login extends React.Component {
+class AddItem extends React.Component {
     state = {
         credentials: {
-            name: '',
-            market: '',
-            price: '',
-            description: ''
-        }
+            item_name: '',
+            item_description: '',
+            item_price: 0.0,
+            l_id: 1,
+            c_id: 1
+        },
+        username: ''
     };
 
     handleChange = e => {
@@ -21,58 +25,48 @@ class Login extends React.Component {
         });
     };
 
-    add = e => {
+    add = e => {        
         e.preventDefault();
+        console.log(this.state.credentials);
         axiosWithAuth()
-            .post('https://build-week-africanmarketplace.herokuapp.com/api/auth/login', this.state.credentials)
+            .post('https://build-week-africanmarketplace.herokuapp.com/api/users/1/items', this.state.credentials)
             .then(res => {
-                localStorage.setItem('token', res.data.payload);
-                this.props.history.push('/market-price');
+                this.props.history.push('/set-price');
             })
-            .catch(err => console.log(err));
-        localStorage.setItem('token', "1");
-        this.props.history.push('/market-price');
+            .catch(err => console.log(err.response));
     };
 
     render() {
+        console.log(this.state.username);
         return (
             <div className="home-page">
                 <h1>Add Item</h1>
                 <div className="addFormStyles">
                     <form onSubmit={this.add} className="regFormStyles">
                         <div>
-                            <label htmlFor="name">Name:</label>
+                            <label htmlFor="item_name">Name:</label>
                             <input className="titleStyles"
                                 type="text"
-                                name="name"
-                                value={this.state.credentials.name}
+                                name="item_name"
+                                value={this.state.credentials.item_name}
                                 onChange={this.handleChange}
                             />
                         </div>
                         <div>
-                            <label htmlFor="market">Market Location:</label>
+                            <label htmlFor="item_price">Price</label>
                             <input className="titleStyles"
-                                type="text"
-                                name="market"
-                                value={this.state.credentials.market}
+                                type="number"
+                                name="item_price"
+                                value={this.state.credentials.item_price}
                                 onChange={this.handleChange}
                             />
                         </div>
                         <div>
-                            <label htmlFor="price">Price</label>
+                            <label htmlFor="item_description">Description:</label>
                             <input className="titleStyles"
                                 type="text"
-                                name="price"
-                                value={this.state.credentials.price}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="description">Description:</label>
-                            <input className="titleStyles"
-                                type="text"
-                                name="description"
-                                value={this.state.credentials.description}
+                                name="item_description"
+                                value={this.state.credentials.item_description}
                                 onChange={this.handleChange}
                             />
                         </div>
@@ -83,4 +77,14 @@ class Login extends React.Component {
         );
     }
 }
-export default Login;
+
+const mapStateToProps = state => {
+    return {
+        username: state.username
+    }
+};
+
+export default connect(
+    mapStateToProps
+)(AddItem);
+
