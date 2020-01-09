@@ -29,7 +29,8 @@ class AddItem extends React.Component {
 
     add = e => {      
         e.preventDefault();
-        const id = this.props.userId;
+        //const id = this.props.userId;
+        const id = localStorage.getItem('userId');
         axiosWithAuth()
             .post(`https://build-week-africanmarketplace.herokuapp.com/api/users/${id}/items`, this.state.credentials)
             .then(res => {

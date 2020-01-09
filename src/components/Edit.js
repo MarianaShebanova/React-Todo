@@ -6,8 +6,10 @@ import { connect } from 'react-redux';
 const Edit = (props) => {
     console.log('aste ' + props.userId);
     const [item, setItem] = useState([]);
-    const userId = props.userId;
-
+   // const userId = props.userId;
+    const userId = localStorage.getItem('userId');
+    console.log(userId);
+    
     useEffect(() => {
         const id = props.match.params.id;
         axiosWithAuth()

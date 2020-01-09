@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 const Register = (props) => {
     const [credentials, setCredentials] = useState({
@@ -19,6 +20,7 @@ const Register = (props) => {
 
     const register = e => {
         e.preventDefault();
+        //console.log(this.props);
         let name = credentials.username;
         axiosWithAuth()    
             .post(`https://build-week-africanmarketplace.herokuapp.com/api/auth/register`,
@@ -32,7 +34,8 @@ const Register = (props) => {
                         var found = res.data.find(function (element) {
                             return element.username === name;
                         });
-                        this.props.dispatch({ type: 'USERNAME', username: found.id });
+                        props.dispatch({ type: 'USERNAME', username: found.id });
+                        localStorage.setItem('userId', found.id);
                     })
                     .catch(err => console.log(err)); 
                 localStorage.setItem('token', res.data.token);
@@ -83,4 +86,4 @@ const Register = (props) => {
     );
 }
 
-export default Register;
+export default connect()(Register);

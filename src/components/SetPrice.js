@@ -15,7 +15,8 @@ const initialCategories = [
 ];
 
 const SetPrice = (props) => {
-    const id = props.userId;
+    //const id = props.userId;
+    const id = localStorage.getItem('userId');
     const [categories, setCategories] = useState(initialCategories);
     useEffect(() => {
         console.log()

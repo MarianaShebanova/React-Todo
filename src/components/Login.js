@@ -35,6 +35,7 @@ class Login extends React.Component {
                         console.log('BBB');
                         console.log(found.id);
                         this.props.dispatch({ type: 'USER', userId: found.id });
+                        localStorage.setItem('userId', found.id);
                     })
                     .catch(err => console.log(err)); 
                 localStorage.setItem('token', res.data.token);                
