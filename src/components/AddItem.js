@@ -44,7 +44,7 @@ class AddItem extends React.Component {
                 <div className="addFormStyles">
                     <form onSubmit={this.add} className="regFormStyles">
                         <div>
-                            <label htmlFor="item_name">Name:</label>
+                            <label className="label" htmlFor="item_name">Name:</label>
                             <input className="titleStyles"
                                 type="text"
                                 name="item_name"
@@ -53,7 +53,7 @@ class AddItem extends React.Component {
                             />
                         </div>
                         <div>
-                            <label htmlFor="item_price">Price</label>
+                            <label className="label" htmlFor="item_price">Price:</label>
                             <input className="titleStyles"
                                 type="number"
                                 name="item_price"
@@ -62,7 +62,7 @@ class AddItem extends React.Component {
                             />
                         </div>
                         <div>
-                            <label htmlFor="item_description">Description:</label>
+                            <label className="label" htmlFor="item_description">Description:</label>
                             <input className="titleStyles"
                                 type="text"
                                 name="item_description"

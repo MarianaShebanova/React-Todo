@@ -32,10 +32,10 @@ const Category = (props) => {
          <img src={category.imgUrl} width="128" height="128" />
          <h3>{category.category}</h3>  
                 {items.map(item => (
-                    <div>
-                        <h3>{item.item_name}</h3>       
-                        <h3>{item.item_description}</h3>       
-                        <h3>{item.item_price}</h3>       
+                    <div className="category">
+                        <h3>Name: {item.item_name}</h3>       
+                        <h3>Description: {item.item_description}</h3>       
+                        <h3>Price: {item.item_price}</h3>       
                     </div>
                 ))}  
     </div>

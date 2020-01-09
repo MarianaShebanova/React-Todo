@@ -81,7 +81,14 @@ header h1 {
   height: 50px;
   font-size: 1.5rem;
   font-style: bold;
-  margin: 25px 0;
+  margin: 2%;
+}
+
+.label {
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  font-style: bold;
 }
 
 .titleStyles2 {
@@ -237,4 +244,11 @@ Styles for the Gallery
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 3%;
+}
+
+.category {
+  background-color: #C0C0C0;
+  width: 40%;
+  margin: 5%;
+  margin-left: 30%;
 }
