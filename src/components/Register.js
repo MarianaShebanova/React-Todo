@@ -22,6 +22,7 @@ const Register = (props) => {
         e.preventDefault();
         //console.log(this.props);
         let name = credentials.username;
+        console.log("BBB" + name);
         axiosWithAuth()    
             .post(`https://build-week-africanmarketplace.herokuapp.com/api/auth/register`,
                 credentials,
@@ -30,7 +31,7 @@ const Register = (props) => {
                 axiosWithAuth()
                     .get('https://build-week-africanmarketplace.herokuapp.com/api/users')
                     .then(res => {
-                        console.log(name);
+                        console.log("AAA" + name);
                         var found = res.data.find(function (element) {
                             return element.username === name;
                         });

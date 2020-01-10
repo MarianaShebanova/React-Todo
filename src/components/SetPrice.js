@@ -5,19 +5,10 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { UserContext } from '../contexts/UserContext';
 import { connect } from 'react-redux';
 
-const initialCategories = [
-    {
-        "id": 14,
-        "item_name": "0.329724842884361",
-        "item_description": "test",
-        "item_price": 9.99
-    }
-];
-
 const SetPrice = (props) => {
     //const id = props.userId;
     const id = localStorage.getItem('userId');
-    const [categories, setCategories] = useState(initialCategories);
+    const [categories, setCategories] = useState([]);
     useEffect(() => {
         console.log()
         axiosWithAuth()
